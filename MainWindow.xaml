@@ -1,0 +1,65 @@
+﻿<Window x:Class="FirstMainWindow.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FirstMainWindow.ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="550" Width="925">
+    <Window.DataContext>
+        <local:MainWindowLogicClass x:Name="test"></local:MainWindowLogicClass>
+    </Window.DataContext>
+   
+    <Grid>
+        <TextBox Text="{Binding Firmnames}" Name="firmNametxtBox" HorizontalAlignment="Left" Height="23" Margin="73,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Text="{Binding FirmAddress}" Name="addresTxtBox" HorizontalAlignment="Left" Height="23" Margin="287,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <Label Content="Firm name" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top"/>
+        <Label Content="Firm adress" HorizontalAlignment="Left" Margin="212,7,0,0" VerticalAlignment="Top"/>
+        <TextBox Text="{Binding CountSotrs}" Name="countSotr" HorizontalAlignment="Left" Height="23" Margin="566,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="63"/>
+        <Label Content="Count sotrudnikov" HorizontalAlignment="Left" Margin="439,7,0,0" VerticalAlignment="Top"/>
+        <Button Command="{Binding AddFilial}" Content="Add Filial" Name="addFilialBtn" HorizontalAlignment="Left" Margin="702,13,0,0" VerticalAlignment="Top" Width="76"/>
+        <ListBox SelectedItem="{Binding CurrentFilial}" SelectedIndex="{Binding SelectionChange}" ItemsSource="{Binding Filials}" Name="listBoxWithFilials" HorizontalAlignment="Left" Height="113" Margin="38,69,0,0" VerticalAlignment="Top" Width="740">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition ></ColumnDefinition>
+                            <ColumnDefinition ></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Border BorderThickness="1" BorderBrush="Black">
+                            <TextBlock Width="240" Padding="10,0,0,0" Grid.Column="0"  Text="{Binding FirmName}"></TextBlock>
+                        </Border>
+                        <Border Grid.Column="1" BorderThickness="1" BorderBrush="Black">
+                            <TextBlock Width="240" Padding="10,0,0,0"  Text="{Binding FirmAddres}"></TextBlock>
+                        </Border>
+                        <Border Grid.Column="2" BorderThickness="1" BorderBrush="Black">
+                            <TextBlock Width="235" Padding="10,0,0,0"  Text="{Binding CountSotr}"></TextBlock>
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Command="{Binding AddSotr}" Content="Add Email" x:Name="addEmailBtn" HorizontalAlignment="Left" Margin="798,69,0,0" VerticalAlignment="Top" Width="76" Height="113"/>
+        <ListBox SelectionMode="Multiple"  SelectedItem="{Binding CurrentSotrudnic}" ItemsSource="{Binding CurrentSotrudniki}" Name="listBoxWithSotrEmails" HorizontalAlignment="Left" Height="112" Margin="38,230,0,0" VerticalAlignment="Top" Width="750">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="IsSelected" Value="{Binding IsSelected}"></Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Grid.Column="2" BorderThickness="1" BorderBrush="Black">
+                        <TextBlock Width="700" Padding="10,0,0,0"  Text="{Binding Email}"></TextBlock>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Command="{Binding SendMessage}" Content="Start Sending" x:Name="startSendingBtn" HorizontalAlignment="Left" Margin="798,230,0,0" VerticalAlignment="Top" Width="76" Height="113"/>
+        <TextBox Text="{Binding Subject}" x:Name="subjecttxtBox" HorizontalAlignment="Left" Height="86" Margin="110,406,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="125"/>
+        <TextBox Text="{Binding Body}" x:Name="bodyTxtBox" HorizontalAlignment="Left" Height="86" Margin="332,406,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="542"/>
+        <Label Content="Subject" HorizontalAlignment="Left" Margin="44,403,0,0" VerticalAlignment="Top" Width="68"/>
+        <Label Content="Body" HorizontalAlignment="Left" Margin="254,403,0,0" VerticalAlignment="Top" Width="72"/>
+
+    </Grid>
+</Window>
